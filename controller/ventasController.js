@@ -108,6 +108,7 @@ app_angular.controller("pedidoController",['Conexion','$scope','$location','$htt
 			})
 			
 			CRUD.select('SELECT  SUM (valor_base)  as total,SUM (cantidad)  as cantidad FROM  t_pedidos_detalle  where rowid_pedido='+$scope.pedidos.rowid+'',function(elem){$scope.pedidoDetalles.push(elem)});
+			$scope.CambiarTab('2','siguiente');
 	}
 	$scope.guardarCabezera=function(){
 		if($scope.validacion==0)
