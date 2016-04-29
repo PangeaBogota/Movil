@@ -1,31 +1,42 @@
 var app_angular= angular.module('PedidosOnline');
 
-app_angular.controller("TercerosController",['Metodos_erp_terceros','$scope',function (Metodos_erp_terceros,$scope) {
+app_angular.controller("TercerosController",['Conexion','$scope',function (Conexion,$scope) {
 	// body...
 	$scope.terceros = [];
-    Terceros.selectAll(function(elem) {$scope.terceros.push(elem)});
+	$scope.terceroSeleccionado=[];
+    CRUD.selectAll('erp_terceros',function(elem) {$scope.terceros.push(elem)});
     
+	$scope.ConsultarDatos =function(tercero){
+		$scope.terceroSeleccionado=tercero;
+		$scope.CambiarTab('1','siguiente');	
+	}
+	
+	$scope.Refrescar =function(){
+    	CRUD.selectAll('erp_terceros',function(elem) {$scope.terceros.push(elem)});
+		$scope.Search = '';
+	}
+	
+	
+	$scope.CambiarTab = function (tab_actual, accion) {
+        var tab_id = null;
+
+        if (tab_actual == '1' && accion == 'siguiente')
+            tab_id = 'tab_2';
+        else if (tab_actual == '2' && accion == 'atras')
+            tab_id = 'tab_1';
+
+        angular.element('ul.tabs li').removeClass('active');
+        angular.element('.tab-pane').removeClass('active');
+
+        angular.element("ul.tabs").find("[data-tab='" + tab_id + "']").toggleClass('active');
+        angular.element("#" + tab_id).toggleClass('active');
+    };
+    angular.element('#ui-id-1').mouseover(function (){
+        angular.element('#ui-id-1').show();
+    });
+	
+	
 }]);
 
-app_angular.controller("NewController_erp_terceros",['Metodos_erp_terceros','$scope','$location',function (Metodos_erp_terceros,$scope,$location) {
-	$scope.title="Crear erp_terceros";
-	$scope.terceros=[];
-	$scope.Add=function(){
-		Terceros.insert($scope.terceros)
-		$location.path("/");
-	}
-}]);
 
-app_angular.controller("EditController_erp_terceros",['Metodos_erp_terceros','$scope','$routeParams','$location',function (Metodos_erp_terceros,$scope,$routeParams,$location) {
-	$scope.terceros=[];
-	$scope.title="Modificar erp_terceros";
-	Terceros.selectID($routeParams.id,function(elem) {$scope.terceros.push(elem)})
-	$scope.Actualizar=function(){
-		Terceros.Update($scope.terceros[0],{rowid:$routeParams.id})
-		$location.path("/");
-	}
-	$scope.Eliminar=function(){
-		Terceros.Delete($routeParams.id);
-		$location.path('/');
-	}
-}]);
+

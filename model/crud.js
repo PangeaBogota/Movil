@@ -5,7 +5,7 @@ app_angular.service('Conexion', ['Factory',function (Factory) {
 	//Insercion
     CRUD.insert = function(tabla,elem, callback) {
         db.insert(tabla, elem, callback);
-		debugger
+		
     }
 	//Busqueda de tabla completa
   	CRUD.selectAll = function(tabla,handler,callback){
@@ -25,14 +25,11 @@ app_angular.service('Conexion', ['Factory',function (Factory) {
         })
     }
 	CRUD.select = function(query,handler,callback){
-		debugger
         db.selectINNERJOIN(query).then(function(results) {
             for(var i=0; i < results.rows.length; i++){
-				debugger
                 handler(results.rows.item(i));
             }
         })
-		debugger
     }
 	//Eliminar Registro
     CRUD.Delete = function(tabla,valor,callback){
