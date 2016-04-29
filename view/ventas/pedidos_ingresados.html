@@ -1,0 +1,108 @@
+<div class="row">
+    <!--=== Feeds (with Tabs) ===-->
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <h4><i class="icon-reorder"></i> Pedidos Ingresados</h4>
+                <div class="toolbar no-padding">
+                    <div class="btn-group">
+                        <a href="#/ventas/pedido_nuevo" class="btn btn-xs"><i class="icon-plus"></i></a>
+                        <span class="btn btn-xs widget-refresh"><i class="icon-refresh"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content" ng-controller="PedidosController">
+
+			<div class="tabbable tabbable-custom">
+					<ul class="nav nav-tabs tabs">
+						<li data-tab="tab_1" class="active"><a data-tab="tab_1" data-toggle="tab">Lista de pedidos</a></li>
+						<li data-tab="tab_2"><a data-tab="tab_2" data-toggle="tab">2. Detalle</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab_1">
+							<div class="col-md-12">
+								
+                                <label for="rowid_tercero" class="control-label">Pedido  <span class="required">*</span></label>
+                                        <input  placeholder="Seleccionar Pedido" type="text" ng-model="Search" class="form-control"></input>
+                                <ul class="feeds clearfix" >
+                        
+                                <!--<li ng-repeat="menu in terceros  |filter:Search">
+                                    <a  ng-click = "ConsultarDatos(menu)">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        {{menu.razonsocial}} - {{menu.identificacion}}
+                                    </a>
+                                    
+                                </li>
+            
+                                </ul> <!-- /.feeds -->
+
+                                
+                                <table class="table table-hover table-striped" >
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Fecha Solicitud</th>
+                                                <th>Orden Compra</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="menu in pedidos |filter:Search">
+                                                <td>
+                                               	 	<a  ng-click = "ConsultarDatos(menu)">
+                                        			<i class="glyphicon glyphicon-search"></i>
+                                   					 </a>
+                                                </td>
+                                                <td>{{menu.fecha_solicitud}}</td>
+                                                <td>{{menu.orden_compra}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                
+							</div>
+						</div>
+						<div class="tab-pane" id="tab_2">
+							<div class="col-md-12">
+								
+                                <form class="form-vertical row-border">
+                                
+                                	<div class="form-group">
+                                    	<label class="control-label">Razon Social:</label>				
+                                    	<input class="form-control" type="text" />
+
+                                    	<label class="control-label">Nombre Comercial:</label>				
+                                        <input class="form-control" type="text" />
+                                    </div>
+                                    
+                                	<div class="form-group">
+                           				<table class="table table-hover table-striped" >
+                                            <thead>
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Cantidad</th>
+                                                <th>V. unitario</th>
+                                                <th>V. Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="menu in detallespedido |filter:Search">
+                                                <td>{{menu.item_descripcion}}</td>
+                                                <td>{{menu.cantidad}}</td>
+	                                            <td>{{menu.precio_unitario}}</td>
+                                                <td>{{menu.valor_base}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                                
+							</div>
+					    </div>
+				    </div>
+	</div>
+
+
+            </div> <!-- /.widget-content -->
+        </div> <!-- /.widget .box -->
+    </div> <!-- /.col-md-6 -->
+    <!-- /Feeds (with Tabs) -->
+</div> <!-- /.row -->
